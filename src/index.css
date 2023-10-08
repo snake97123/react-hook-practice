@@ -11,10 +11,10 @@ body, html {
   height: 100%;
 }
 
-.tutorial {
+.counter-container {
   text-align: center;
 }
 
-.tutorial button {
+.counter-container button {
   margin: 0 10px;
 }

@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.plus {
+  /* 薄い青色 */
+  background-color: #93b69c;
+}
+
+.minus {
+  /* 薄い赤色 */
+  background-color: #f0b9b9;
+}

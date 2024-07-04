@@ -1,15 +1,18 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-
+  const [value, setValue] = useState(0);
+  
   return (
-    <div className="counter-container">
-      <h1>Count: {count}</h1>
-      <button onClick={() => setCount(count + 1)}>Increment</button>
-      <button onClick={() => setCount(count - 1)}>Decrement</button>
+    <div>
+      <p>現在のカウント数：{value}</p>
+      {/* +1と-1とリセットボタンの設置 */}
+      <button className="plus" onClick={() => setValue(value + 1)}>+1</button>
+      <button className="minus" onClick={() => setValue(value - 1)}>-1</button>
+      <button className="reset" onClick={() => setValue(0)}>リセット</button>
     </div>
-  );
+  )
 }
 
 export default App;

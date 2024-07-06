@@ -1,36 +1,56 @@
-import React, {useState, useEffect} from "react";
-import "./App.css";
+import React, { useState, useEffect } from "react";
 
-const App = () => {
-   // 状態変数の初期値は０
-    const [count, setCount] = useState(0);
+const Timer = ({ startTimer }) => {
+  const [count, setCount] = useState(0);
 
-   // 副作用関数の宣言
-   // countの値が変更された時に実行される
-   const callbackFunction = () => {
-     // titleの変更
-     document.title = `You clicked ${count} times`;
-   }
+  const countReset = () => {
+    setCount(0);
+  };
 
-   useEffect(callbackFunction, [count]);
+  const countIncrement = () => {
+    setCount((prevCount) => prevCount + 1);
+    console.log("カウントアップ＋１");
+  };
 
-   const increment = () => {
-      setCount(count + 1);
-   }
+  useEffect(() => {
+    let timerId;
+    if (startTimer) {
+      alert("副作用が実行されました");
+      timerId = setInterval(countIncrement, 1000);
+      console.log(timerId);
+    }
 
-   const countReset = () => {
-      setCount(0);
-   };
+    return () => {
+      if (timerId) {
+        clearInterval(timerId);
+        console.log("timerが削除されました。");
+      }
+    };
+  }, [startTimer]);
 
-   return (
-      <div className="App">
-        <p>現在のカウント数：{count}</p>
+  return (
+    <div className="App">
+      <p>現在のカウント数：{count}</p>
+      <button onClick={countReset}>リセット</button>
+    </div>
+  );
+};
 
-        <button onClick={increment}>カウントアップ</button>
-        <button onClick={countReset}>リセット</button>
-      </div>
-   );
+function App() {
+  const [display, toggleDisplay] = useState(false);
 
- };
+  const handleToggleDisplay = () => {
+    toggleDisplay(!display);
+  };
+
+  return (
+    <>
+      <button onClick={handleToggleDisplay}>
+        {display ? "タイマーを非表示" : "タイマーを表示"}
+      </button>
+      {display && <Timer startTimer={display} />}
+    </>
+  );
+}
 
 export default App;
